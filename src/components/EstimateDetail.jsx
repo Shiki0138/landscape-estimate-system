@@ -11,8 +11,11 @@ export default function EstimateDetail({ id, onBack }) {
   const coverRef = useRef()
   const detailRef = useRef()
 
+  if (!id) return <div style={{color:'red'}}>idが未指定です</div>
+
   // データ取得
   useEffect(() => {
+    console.log('EstimateDetail id:', id)
     (async () => {
       try {
         const client = generateClient()
