@@ -93,7 +93,8 @@ export default function EstimateDetail({ id, onBack }) {
       }))
     : []
   // 追加費用
-  detailRows.push(
+  detailRows.push(kyosai51
+
     { content: '設計費', attachment: '', spec: '', quantity: '', unit: '', unitPrice: '', amount: designFee },
     { content: '諸経費（交通費込み）', attachment: '', spec: '', quantity: '', unit: '', unitPrice: '', amount: miscFee },
     { content: '小計', attachment: '', spec: '', quantity: '', unit: '', unitPrice: '', amount: subtotal + designFee + miscFee },
