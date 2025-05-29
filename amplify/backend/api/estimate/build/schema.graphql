@@ -1,0 +1,417 @@
+type UnitPrice {
+  id: ID!
+  item: String!
+  unit: String
+  price: Float!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Estimate {
+  id: ID!
+  customerName: String!
+  date: AWSDate!
+  totalAmount: Float!
+  items(filter: ModelEstimateItemFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEstimateItemConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type EstimateItem {
+  id: ID!
+  estimateID: ID!
+  unitPriceID: ID!
+  quantity: Int!
+  amount: Float!
+  unitPrice: UnitPrice
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Invoice {
+  id: ID!
+  customerName: String!
+  date: AWSDate!
+  dueDate: AWSDate!
+  totalAmount: Float!
+  items(filter: ModelInvoiceItemFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelInvoiceItemConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type InvoiceItem {
+  id: ID!
+  invoiceID: ID!
+  description: String!
+  unitPrice: Float!
+  quantity: Int!
+  amount: Float!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelUnitPriceConnection {
+  items: [UnitPrice]!
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelUnitPriceFilterInput {
+  id: ModelIDInput
+  item: ModelStringInput
+  unit: ModelStringInput
+  price: ModelFloatInput
+  and: [ModelUnitPriceFilterInput]
+  or: [ModelUnitPriceFilterInput]
+  not: ModelUnitPriceFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getUnitPrice(id: ID!): UnitPrice
+  listUnitPrices(filter: ModelUnitPriceFilterInput, limit: Int, nextToken: String): ModelUnitPriceConnection
+  getEstimate(id: ID!): Estimate
+  listEstimates(filter: ModelEstimateFilterInput, limit: Int, nextToken: String): ModelEstimateConnection
+  getEstimateItem(id: ID!): EstimateItem
+  listEstimateItems(filter: ModelEstimateItemFilterInput, limit: Int, nextToken: String): ModelEstimateItemConnection
+  getInvoice(id: ID!): Invoice
+  listInvoices(filter: ModelInvoiceFilterInput, limit: Int, nextToken: String): ModelInvoiceConnection
+  getInvoiceItem(id: ID!): InvoiceItem
+  listInvoiceItems(filter: ModelInvoiceItemFilterInput, limit: Int, nextToken: String): ModelInvoiceItemConnection
+}
+
+input CreateUnitPriceInput {
+  id: ID
+  item: String!
+  unit: String
+  price: Float!
+}
+
+input UpdateUnitPriceInput {
+  id: ID!
+  item: String
+  unit: String
+  price: Float
+}
+
+input DeleteUnitPriceInput {
+  id: ID!
+}
+
+type Mutation {
+  createUnitPrice(input: CreateUnitPriceInput!, condition: ModelUnitPriceConditionInput): UnitPrice
+  updateUnitPrice(input: UpdateUnitPriceInput!, condition: ModelUnitPriceConditionInput): UnitPrice
+  deleteUnitPrice(input: DeleteUnitPriceInput!, condition: ModelUnitPriceConditionInput): UnitPrice
+  createEstimate(input: CreateEstimateInput!, condition: ModelEstimateConditionInput): Estimate
+  updateEstimate(input: UpdateEstimateInput!, condition: ModelEstimateConditionInput): Estimate
+  deleteEstimate(input: DeleteEstimateInput!, condition: ModelEstimateConditionInput): Estimate
+  createEstimateItem(input: CreateEstimateItemInput!, condition: ModelEstimateItemConditionInput): EstimateItem
+  updateEstimateItem(input: UpdateEstimateItemInput!, condition: ModelEstimateItemConditionInput): EstimateItem
+  deleteEstimateItem(input: DeleteEstimateItemInput!, condition: ModelEstimateItemConditionInput): EstimateItem
+  createInvoice(input: CreateInvoiceInput!, condition: ModelInvoiceConditionInput): Invoice
+  updateInvoice(input: UpdateInvoiceInput!, condition: ModelInvoiceConditionInput): Invoice
+  deleteInvoice(input: DeleteInvoiceInput!, condition: ModelInvoiceConditionInput): Invoice
+  createInvoiceItem(input: CreateInvoiceItemInput!, condition: ModelInvoiceItemConditionInput): InvoiceItem
+  updateInvoiceItem(input: UpdateInvoiceItemInput!, condition: ModelInvoiceItemConditionInput): InvoiceItem
+  deleteInvoiceItem(input: DeleteInvoiceItemInput!, condition: ModelInvoiceItemConditionInput): InvoiceItem
+}
+
+input ModelUnitPriceConditionInput {
+  item: ModelStringInput
+  unit: ModelStringInput
+  price: ModelFloatInput
+  and: [ModelUnitPriceConditionInput]
+  or: [ModelUnitPriceConditionInput]
+  not: ModelUnitPriceConditionInput
+}
+
+type Subscription {
+  onCreateUnitPrice: UnitPrice @aws_subscribe(mutations: ["createUnitPrice"])
+  onUpdateUnitPrice: UnitPrice @aws_subscribe(mutations: ["updateUnitPrice"])
+  onDeleteUnitPrice: UnitPrice @aws_subscribe(mutations: ["deleteUnitPrice"])
+  onCreateEstimate: Estimate @aws_subscribe(mutations: ["createEstimate"])
+  onUpdateEstimate: Estimate @aws_subscribe(mutations: ["updateEstimate"])
+  onDeleteEstimate: Estimate @aws_subscribe(mutations: ["deleteEstimate"])
+  onCreateEstimateItem: EstimateItem @aws_subscribe(mutations: ["createEstimateItem"])
+  onUpdateEstimateItem: EstimateItem @aws_subscribe(mutations: ["updateEstimateItem"])
+  onDeleteEstimateItem: EstimateItem @aws_subscribe(mutations: ["deleteEstimateItem"])
+  onCreateInvoice: Invoice @aws_subscribe(mutations: ["createInvoice"])
+  onUpdateInvoice: Invoice @aws_subscribe(mutations: ["updateInvoice"])
+  onDeleteInvoice: Invoice @aws_subscribe(mutations: ["deleteInvoice"])
+  onCreateInvoiceItem: InvoiceItem @aws_subscribe(mutations: ["createInvoiceItem"])
+  onUpdateInvoiceItem: InvoiceItem @aws_subscribe(mutations: ["updateInvoiceItem"])
+  onDeleteInvoiceItem: InvoiceItem @aws_subscribe(mutations: ["deleteInvoiceItem"])
+}
+
+type ModelEstimateConnection {
+  items: [Estimate]!
+  nextToken: String
+}
+
+input ModelEstimateFilterInput {
+  id: ModelIDInput
+  customerName: ModelStringInput
+  date: ModelStringInput
+  totalAmount: ModelFloatInput
+  and: [ModelEstimateFilterInput]
+  or: [ModelEstimateFilterInput]
+  not: ModelEstimateFilterInput
+}
+
+input CreateEstimateInput {
+  id: ID
+  customerName: String!
+  date: AWSDate!
+  totalAmount: Float!
+}
+
+input UpdateEstimateInput {
+  id: ID!
+  customerName: String
+  date: AWSDate
+  totalAmount: Float
+}
+
+input DeleteEstimateInput {
+  id: ID!
+}
+
+input ModelEstimateConditionInput {
+  customerName: ModelStringInput
+  date: ModelStringInput
+  totalAmount: ModelFloatInput
+  and: [ModelEstimateConditionInput]
+  or: [ModelEstimateConditionInput]
+  not: ModelEstimateConditionInput
+}
+
+type ModelEstimateItemConnection {
+  items: [EstimateItem]!
+  nextToken: String
+}
+
+input ModelEstimateItemFilterInput {
+  id: ModelIDInput
+  estimateID: ModelIDInput
+  unitPriceID: ModelIDInput
+  quantity: ModelIntInput
+  amount: ModelFloatInput
+  and: [ModelEstimateItemFilterInput]
+  or: [ModelEstimateItemFilterInput]
+  not: ModelEstimateItemFilterInput
+}
+
+input CreateEstimateItemInput {
+  id: ID
+  estimateID: ID!
+  unitPriceID: ID!
+  quantity: Int!
+  amount: Float!
+}
+
+input UpdateEstimateItemInput {
+  id: ID!
+  estimateID: ID
+  unitPriceID: ID
+  quantity: Int
+  amount: Float
+}
+
+input DeleteEstimateItemInput {
+  id: ID!
+}
+
+input ModelEstimateItemConditionInput {
+  estimateID: ModelIDInput
+  unitPriceID: ModelIDInput
+  quantity: ModelIntInput
+  amount: ModelFloatInput
+  and: [ModelEstimateItemConditionInput]
+  or: [ModelEstimateItemConditionInput]
+  not: ModelEstimateItemConditionInput
+}
+
+type ModelInvoiceConnection {
+  items: [Invoice]!
+  nextToken: String
+}
+
+input ModelInvoiceFilterInput {
+  id: ModelIDInput
+  customerName: ModelStringInput
+  date: ModelStringInput
+  dueDate: ModelStringInput
+  totalAmount: ModelFloatInput
+  and: [ModelInvoiceFilterInput]
+  or: [ModelInvoiceFilterInput]
+  not: ModelInvoiceFilterInput
+}
+
+input CreateInvoiceInput {
+  id: ID
+  customerName: String!
+  date: AWSDate!
+  dueDate: AWSDate!
+  totalAmount: Float!
+}
+
+input UpdateInvoiceInput {
+  id: ID!
+  customerName: String
+  date: AWSDate
+  dueDate: AWSDate
+  totalAmount: Float
+}
+
+input DeleteInvoiceInput {
+  id: ID!
+}
+
+input ModelInvoiceConditionInput {
+  customerName: ModelStringInput
+  date: ModelStringInput
+  dueDate: ModelStringInput
+  totalAmount: ModelFloatInput
+  and: [ModelInvoiceConditionInput]
+  or: [ModelInvoiceConditionInput]
+  not: ModelInvoiceConditionInput
+}
+
+type ModelInvoiceItemConnection {
+  items: [InvoiceItem]!
+  nextToken: String
+}
+
+input ModelInvoiceItemFilterInput {
+  id: ModelIDInput
+  invoiceID: ModelIDInput
+  description: ModelStringInput
+  unitPrice: ModelFloatInput
+  quantity: ModelIntInput
+  amount: ModelFloatInput
+  and: [ModelInvoiceItemFilterInput]
+  or: [ModelInvoiceItemFilterInput]
+  not: ModelInvoiceItemFilterInput
+}
+
+input CreateInvoiceItemInput {
+  id: ID
+  invoiceID: ID!
+  description: String!
+  unitPrice: Float!
+  quantity: Int!
+  amount: Float!
+}
+
+input UpdateInvoiceItemInput {
+  id: ID!
+  invoiceID: ID
+  description: String
+  unitPrice: Float
+  quantity: Int
+  amount: Float
+}
+
+input DeleteInvoiceItemInput {
+  id: ID!
+}
+
+input ModelInvoiceItemConditionInput {
+  invoiceID: ModelIDInput
+  description: ModelStringInput
+  unitPrice: ModelFloatInput
+  quantity: ModelIntInput
+  amount: ModelFloatInput
+  and: [ModelInvoiceItemConditionInput]
+  or: [ModelInvoiceItemConditionInput]
+  not: ModelInvoiceItemConditionInput
+}

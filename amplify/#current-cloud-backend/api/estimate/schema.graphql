@@ -1,0 +1,44 @@
+type UnitPrice @model @auth(rules: [{ allow: private }]) {
+  id: ID!
+  item: String!
+  unit: String
+  price: Float!
+}
+
+type Estimate @model @auth(rules: [{ allow: private }]) {
+  id: ID!
+  customerName: String!
+  date: AWSDate!
+  totalAmount: Float!
+  items: [EstimateItem] @connection(keyName: "byEstimate", fields: ["id"])
+}
+
+type EstimateItem @model
+  @key(name: "byEstimate", fields: ["estimateID"])
+  @auth(rules: [{ allow: private }]) {
+  id: ID!
+  estimateID: ID!
+  unitPriceID: ID!
+  quantity: Int!
+  amount: Float!
+  unitPrice: UnitPrice @connection(fields: ["unitPriceID"])
+}
+type Invoice @model @auth(rules: [{ allow: private }]) {
+  id: ID!
+  customerName: String!
+  date: AWSDate!
+  dueDate: AWSDate!
+  totalAmount: Float!
+  items: [InvoiceItem] @connection(keyName: "byInvoice", fields: ["id"])
+}
+
+type InvoiceItem @model
+  @key(name: "byInvoice", fields: ["invoiceID"])
+  @auth(rules: [{ allow: private }]) {
+  id: ID!
+  invoiceID: ID!
+  description: String!
+  unitPrice: Float!
+  quantity: Int!
+  amount: Float!
+}
