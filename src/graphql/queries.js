@@ -43,6 +43,20 @@ export const getEstimate = /* GraphQL */ `
       date
       totalAmount
       items {
+        items {
+          id
+          quantity
+          amount
+          unit
+          attachment
+          spec
+          unitPrice {
+            id
+            item
+            unit
+            price
+          }
+        }
         nextToken
         __typename
       }

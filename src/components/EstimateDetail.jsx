@@ -7,18 +7,24 @@ import { jsPDF }         from 'jspdf'
 
 export default function EstimateDetail({ id, onBack }) {
   const [data, setData] = useState(null)
+  const [error, setError] = useState(null)
   const coverRef = useRef()
   const detailRef = useRef()
 
   // データ取得
   useEffect(() => {
-    ;(async () => {
-      const client = generateClient()
-      const { data: d } = await client.graphql({
-        query: getEstimate,
-        variables: { id }
-      })
-      setData(d.getEstimate)
+    (async () => {
+      try {
+        const client = generateClient()
+        const { data: d } = await client.graphql({
+          query: getEstimate,
+          variables: { id }
+        })
+        setData(d.getEstimate)
+      } catch (e) {
+        setError(e.message || 'データ取得エラー')
+        console.error(e)
+      }
     })()
   }, [id])
 
@@ -38,7 +44,8 @@ export default function EstimateDetail({ id, onBack }) {
     pdf.save(`estimate_${data.id}.pdf`)
   }
 
-  if (!data) return <p>読み込み中…</p>
+  if (error) return <div style={{color:'red'}}>エラー: {error}</div>
+  if (!data) return <div>読み込み中…<br/>id: {id ? id : '未指定'}<br/>data: {JSON.stringify(data)}</div>
 
   // 発行者情報
   const issuer = {
