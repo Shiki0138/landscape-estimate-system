@@ -69,6 +69,15 @@ export default function InvoiceDetail({ id, onBack }) {
             </tr>
           </tbody>
         </table>
+        <div style={{ marginTop: 24, fontSize: 15, fontWeight: 'bold' }}>【振込先】</div>
+        <div style={{ marginLeft: 16, marginBottom: 8, fontSize: 15 }}>
+          南都銀行　尺土支店　店番436<br />
+          口座番号　普通2102305<br />
+          庭想人　安井利典　（ニワオモイビト　ヤスイトシノリ）
+        </div>
+        <div style={{ marginLeft: 16, color: '#b00', fontSize: 14 }}>
+          恐れ入りますが、お振込手数料はお客様ご負担にてお願い申し上げます
+        </div>
       </div>
     </div>
   )
