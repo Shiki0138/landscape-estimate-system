@@ -28,10 +28,7 @@
         "fileStorage": {}
       },
       "hosting": {
-        "amplifyhosting": {
-          "appId": "d3da5w5tez12en",
-          "type": "manual"
-        }
+        "S3AndCloudFront": {}
       }
     }
   }

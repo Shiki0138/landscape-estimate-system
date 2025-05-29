@@ -42,7 +42,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-estimate-dev-f1453-deployment/amplify-cfn-templates/auth/estimatee8c84665-cloudformation-template.json",
         "logicalId": "authestimatee8c84665"
       },
-      "lastPushTimeStamp": "2025-05-29T02:34:47.751Z",
+      "lastPushTimeStamp": "2025-05-29T06:19:28.417Z",
       "output": {
         "UserPoolId": "ap-northeast-1_OJppVMwPA",
         "AppClientIDWeb": "7dql3ceu9r3akggj986pnhs338",
@@ -82,12 +82,12 @@
         "GraphQLAPIIdOutput": "s3f6ry2zjvgg3mnoujcbbeithi",
         "GraphQLAPIEndpointOutput": "https://siubcxa6mndjbcve2jkcb3nlha.appsync-api.ap-northeast-1.amazonaws.com/graphql"
       },
-      "lastPushTimeStamp": "2025-05-29T02:34:47.752Z",
+      "lastPushTimeStamp": "2025-05-29T06:19:28.418Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-estimate-dev-f1453-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiestimate"
       },
-      "lastPushDirHash": "/7h00HfOAz58dntd3FLgkOYzRhA="
+      "lastPushDirHash": "6x4c5YEH9w65TXVASWP5mBiDKkQ="
     }
   },
   "function": {
@@ -107,7 +107,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-estimate-dev-f1453-deployment/amplify-cfn-templates/function/S3Triggeracc07c30-cloudformation-template.json",
         "logicalId": "functionS3Triggeracc07c30"
       },
-      "lastPushTimeStamp": "2025-05-29T02:34:47.753Z",
+      "lastPushTimeStamp": "2025-05-29T06:19:28.419Z",
       "output": {
         "LambdaExecutionRoleArn": "arn:aws:iam::219541662789:role/S3Triggeracc07c30LambdaRoleacc07c30-dev",
         "Region": "ap-northeast-1",
@@ -123,7 +123,7 @@
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
-      "lastPushTimeStamp": "2025-05-29T02:34:49.325Z",
+      "lastPushTimeStamp": "2025-05-29T06:19:30.176Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-estimate-dev-f1453-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storagefileStorage"
@@ -136,16 +136,25 @@
     }
   },
   "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
+    "S3AndCloudFront": {
+      "service": "S3AndCloudFront",
       "providerPlugin": "awscloudformation",
-      "type": "manual",
-      "output": {},
-      "lastPushTimeStamp": "2025-05-29T02:34:47.756Z",
       "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-estimate-dev-f1453-deployment/amplify-cfn-templates/hosting/amplifyhosting-template.json",
-        "logicalId": "hostingamplifyhosting"
-      }
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-estimate-dev-f1453-deployment/amplify-cfn-templates/hosting/template.json",
+        "logicalId": "hostingS3AndCloudFront"
+      },
+      "lastPushTimeStamp": "2025-05-29T06:19:28.421Z",
+      "output": {
+        "CloudFrontSecureURL": "https://d2j7ru8yr7owa6.cloudfront.net",
+        "S3BucketSecureURL": "https://landscape-estimate-system-dev-hosting-dev.s3.amazonaws.com",
+        "CloudFrontOriginAccessIdentity": "E1DK6XGFOMCWGK",
+        "WebsiteURL": "http://landscape-estimate-system-dev-hosting-dev.s3-website-ap-northeast-1.amazonaws.com",
+        "CloudFrontDistributionID": "E3PZUX98A1I2F0",
+        "Region": "ap-northeast-1",
+        "HostingBucketName": "landscape-estimate-system-dev-hosting-dev",
+        "CloudFrontDomainName": "d2j7ru8yr7owa6.cloudfront.net"
+      },
+      "lastPushDirHash": "F10qBNvQcC6e98rX4oBI4MFEUmo="
     }
   }
 }

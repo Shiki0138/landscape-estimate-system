@@ -269,7 +269,7 @@
             ]
           },
           "S3DeploymentBucket": "amplify-estimate-dev-f1453-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/a2950e014fc8876ab45cbf356fe62391cf00d7b9",
+          "S3DeploymentRootKey": "amplify-appsync-files/237b79a3cf2845ea5e13ff5a27149b606266839a",
           "env": "dev"
         }
       }
@@ -318,13 +318,12 @@
         }
       }
     },
-    "hostingamplifyhosting": {
+    "hostingS3AndCloudFront": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-estimate-dev-f1453-deployment/amplify-cfn-templates/hosting/amplifyhosting-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-estimate-dev-f1453-deployment/amplify-cfn-templates/hosting/template.json",
         "Parameters": {
-          "appId": "d3da5w5tez12en",
-          "type": "manual",
+          "bucketName": "landscape-estimate-system-dev-hosting",
           "env": "dev"
         }
       }

@@ -30,7 +30,10 @@ const awsmobile = {
     "aws_appsync_region": "ap-northeast-1",
     "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
     "aws_user_files_s3_bucket": "landscape-estimate-files-df1453-dev",
-    "aws_user_files_s3_bucket_region": "ap-northeast-1"
+    "aws_user_files_s3_bucket_region": "ap-northeast-1",
+    "aws_content_delivery_bucket": "landscape-estimate-system-dev-hosting-dev",
+    "aws_content_delivery_bucket_region": "ap-northeast-1",
+    "aws_content_delivery_url": "https://d2j7ru8yr7owa6.cloudfront.net"
 };
 
 
