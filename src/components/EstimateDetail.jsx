@@ -71,15 +71,17 @@ export default function EstimateDetail({ id, onBack }) {
   })()
 
   // 内訳テーブル用データ例
-  const detailRows = data.items.items.map(item => ({
-    content: item.unitPrice.item,
-    attachment: item.attachment || '',
-    spec: item.spec || '',
-    quantity: item.quantity,
-    unit: item.unit || '',
-    unitPrice: item.unitPrice.price,
-    amount: item.amount
-  }))
+  const detailRows = Array.isArray(data.items?.items)
+    ? data.items.items.map(item => ({
+        content: item.unitPrice.item,
+        attachment: item.attachment || '',
+        spec: item.spec || '',
+        quantity: item.quantity,
+        unit: item.unit || '',
+        unitPrice: item.unitPrice.price,
+        amount: item.amount
+      }))
+    : []
   // 追加費用
   detailRows.push(
     { content: '設計費', attachment: '', spec: '', quantity: '', unit: '', unitPrice: '', amount: designFee },
