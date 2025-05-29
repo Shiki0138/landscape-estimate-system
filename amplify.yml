@@ -8,7 +8,7 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    # Vite が出力するフォルダを指定
+    # Vite のビルド成果物が出るディレクトリ
     baseDirectory: dist
     files:
       - '**/*'
